@@ -22,6 +22,8 @@ public class StartActivity extends AppCompatActivity {
             intent = new Intent(this, MainActivity.class);
         } else if (v.getId()==R.id.btn2) {
             intent = new Intent(this, MainActivity2.class);
+        } else if (v.getId()==R.id.btn3) {
+            intent = new Intent(this, MainActivity4.class);
         }
         startActivity(intent);
     }
