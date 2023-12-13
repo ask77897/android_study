@@ -3,27 +3,36 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10sp">
-
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/photo"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:src="@drawable/baseline_tag_faces_24"
+        android:layout_marginRight="10sp"
+        android:layout_centerVertical="true"/>
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="여기는 이름"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/photo"/>
     <TextView
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="여기는 전화번호"
         android:textSize="15sp"
-        android:layout_below="@id/name"/>
+        android:layout_below="@id/name"
+        android:layout_toRightOf="@id/photo"/>
     <TextView
         android:id="@+id/juso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="여기는 주소"
         android:textSize="15sp"
-        android:layout_below="@id/phone"/>
+        android:layout_below="@id/phone"
+        android:layout_toRightOf="@id/photo"/>
     <ImageView
         android:id="@+id/btnDelete"
         android:layout_width="wrap_content"

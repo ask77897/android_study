@@ -1,19 +1,27 @@
 package com.example.ex03;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class InsertActivity extends AppCompatActivity {
     EditText name, phone, juso;
     AddressHelper helper;
     SQLiteDatabase db;
+    CircleImageView photo;
+    String strPhoto = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +37,7 @@ public class InsertActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         phone = findViewById(R.id.phone);
         juso = findViewById(R.id.juso);
+        photo = findViewById(R.id.photo);
         findViewById(R.id.btnInsert).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,13 +51,21 @@ public class InsertActivity extends AppCompatActivity {
                             .setPositiveButton("확인", null)
                             .show();
                 }else{
-                    String sql = "insert into address(name, phone, juso) values(";
+                    String sql = "insert into address(name, phone, juso, photo) values(";
                     sql += "'" + strName + "',";
                     sql += "'" + strPhone + "',";
-                    sql += "'" + strJuso + "')";
+                    sql += "'" + strJuso + "',";
+                    sql += "'" + strPhoto + "')";
                     db.execSQL(sql);
                     finish();
                 }
+            }
+        });
+        findViewById(R.id.photo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 0);
             }
         });
     }//onCreate
@@ -59,5 +76,15 @@ public class InsertActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == 0){
+            strPhoto = data.getData().toString();
+            //System.out.println("..........." + strPhoto);
+            photo.setImageURI(Uri.parse(strPhoto));
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

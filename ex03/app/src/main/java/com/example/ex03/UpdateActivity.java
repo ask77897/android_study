@@ -8,16 +8,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UpdateActivity extends AppCompatActivity {
     AddressHelper helper;
     SQLiteDatabase db;
     EditText name, phone, juso;
+    CircleImageView photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +38,21 @@ public class UpdateActivity extends AppCompatActivity {
 
         helper = new AddressHelper(this);
         db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select _id, name, phone, juso from address where _id=" + id, null);
+        Cursor cursor = db.rawQuery("select _id, name, phone, juso, photo from address where _id=" + id, null);
         name = findViewById(R.id.name);
         phone = findViewById(R.id.phone);
         juso = findViewById(R.id.juso);
+        photo = findViewById(R.id.photo);
         if(cursor.moveToNext()) {
             name.setText(cursor.getString(1));
             phone.setText(cursor.getString(2));
             juso.setText(cursor.getString(3));
+            String strPhoto = cursor.getString(4);
+//            if(strPhoto.equals("")){
+//                photo.setImageResource(R.drawable.baseline_tag_faces_24);
+//            }else{
+//                photo.setImageURI(Uri.parse(strPhoto));
+//            }
         }
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
