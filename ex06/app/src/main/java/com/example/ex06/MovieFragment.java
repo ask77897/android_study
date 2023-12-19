@@ -62,7 +62,7 @@ public class MovieFragment extends Fragment {
                     String title = e.select(".title").text();
                     String image = e.select("img").attr("src");
                     String link = "http://www.cgv.co.kr/" + e.select(".link-reservation").attr("href");
-                    //System.out.println(link);
+                    System.out.println(link);
                     HashMap<String, Object> map = new HashMap<>();
                     map.put("rank", rank);
                     map.put("title", title);
