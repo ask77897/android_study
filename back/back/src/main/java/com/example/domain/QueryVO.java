@@ -6,6 +6,7 @@ public class QueryVO {
 	private int page;
 	private int size;
 	private int start;
+	
 	public String getKey() {
 		return key;
 	}
@@ -30,17 +31,18 @@ public class QueryVO {
 	public void setSize(int size) {
 		this.size = size;
 	}
+	
 	public int getStart() {
 		return start;
 	}
+	
 	public void setStart(int start) {
-		this.start = (this.page-1)*this.size;
+		this.start = (this.page-1) * this.size;
 	}
+	
 	@Override
 	public String toString() {
 		return "QueryVO [key=" + key + ", word=" + word + ", page=" + page + ", size=" + size + ", start=" + start
 				+ "]";
 	}
-	
-	
 }

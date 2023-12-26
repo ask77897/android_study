@@ -44,11 +44,10 @@ public class UserVO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
 	@Override
 	public String toString() {
 		return "UserVO [uid=" + uid + ", upass=" + upass + ", uname=" + uname + ", address1=" + address1 + ", address2="
 				+ address2 + ", phone=" + phone + "]";
 	}
-	
-
 }

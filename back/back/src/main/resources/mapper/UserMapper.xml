@@ -5,24 +5,25 @@
         select * from users
         where uid like concat('%', #{word}, '%') 
         or uname like concat('%', #{word}, '%')
-        or address1 like concat('%', #{word}, '%') 
-        limit #{start}, #{size}
+        or address1 like concat('%', #{word}, '%')
+        limit #{start}, #{size};
     </select>
     <select id="total" resultType="int">
     	select count(*) from users
     	where uid like concat('%', #{word}, '%') 
         or uname like concat('%', #{word}, '%')
-        or address1 like concat('%', #{word}, '%')
+        or address1 like concat('%', #{word}, '%');
     </select>
     <select id="read" resultType="com.example.domain.UserVO">
     	select * from users where uid=#{uid};
     </select>
     <insert id="insert">
-    	insert into users(uid, upass, uname, address1, address2, phone)
-    	values(#{uid}, #{upass}, #{uname}, #{address1}, #{address2}, #{phone})
+    	insert into users(uid,upass,uname,address1,address2,phone)
+    	values(#{uid},#{upass},#{uname},#{address1},#{address2},#{phone});
     </insert>
     <update id="update">
-    	update users set uname=#{uname}, address1=#{address1}, address2=#{address2}, phone=#{phone}
-    	where uid=#{uid}
+    	update users 
+    	set uname=#{uname}, address1=#{address1}, address2=#{address2}, phone=#{phone}
+    	where uid=#{uid};
     </update>
 </mapper>
